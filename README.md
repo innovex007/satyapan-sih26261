@@ -7,6 +7,7 @@ sdk: docker
 app_port: 7860
 pinned: false
 short_description: Prototype (synthetic data) – Team Innovex_007
+---
 
 # Satyapan: AI pre-scrutiny assistant for AICTE officers (SIH26261)
 
