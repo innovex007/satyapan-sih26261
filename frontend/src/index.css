@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-canvas text-slate-800 font-sans text-[14px] leading-[22px] antialiased; }
+  h1 { @apply text-[28px] leading-9 font-semibold text-slate-900; }
+  h2 { @apply text-[18px] leading-7 font-semibold text-slate-900; }
+}
+@layer components {
+  .card { @apply bg-white border border-[#E5E7EB] rounded-xl shadow-card p-6; }
+  .meta { @apply text-[12px] leading-[18px] text-slate-500; }
+}

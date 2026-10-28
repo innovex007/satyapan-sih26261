@@ -1,0 +1,98 @@
+name: APH 2026-27
+version: 1
+session:
+  label: "2026-27"
+  start: 2026-07-01
+
+tolerances:
+  land_area_pct: 2          # relative tolerance between documents
+  survey_no: exact
+  address_similarity_min: 0.85
+
+twin:
+  hash_flag_max: 6          # pHash distance <= this -> "exact / edited copy"
+  hash_candidate_max: 30    # cheap filter: only pairs inside this radius go to the keypoint stage
+  orb:                      # stage 2: ORB keypoints + ratio test + RANSAC homography (OpenCV, CPU) -> "same room, re-shot"
+    n_features: 2000
+    max_side: 1000
+    ratio: 0.75
+    ransac_px: 5.0
+    min_inliers: 120        # tuned on the synthetic set: worst non-twin 83, hero re-shot 212 (see eval/twin_scan.py)
+  clip_min_cosine: 0.95     # only used when USE_CLIP=true
+
+forensics:
+  min_independent_signals: 1   # prototype: an incremental save after signing is enough for "Manual review required"
+
+risk:
+  weights: {low: 1, medium: 3, high: 8}
+  amber_at: 4
+  red_at: 12
+  single_high_floor: Amber   # one high-severity finding can never leave the lane Green; two or more -> Red
+
+doc_types:
+  land_deed:       {label: Land / lease deed,            group: Land & Building,     keywords: [lease deed, deed of lease, lessor, lessee, sub-registrar, registration]}
+  building_plan:   {label: Building plan,                group: Land & Building,     keywords: [building plan, sanctioned plan, plot area, town planning]}
+  occupancy_cert:  {label: Occupancy certificate,        group: Land & Building,     keywords: [occupancy certificate, occupancy, municipal corporation]}
+  land_use_cert:   {label: Land-use conversion,          group: Land & Building,     keywords: [land-use conversion, land use, converted to, non-agricultural, revenue department, tehsil]}
+  fire_noc:        {label: Fire NOC,                     group: Safety & NOCs,       keywords: [fire safety, fire services, fire]}
+  university_noc:  {label: University / affiliating NOC, group: Safety & NOCs,       keywords: [state university, affiliation, affiliating, office of the registrar]}
+  faculty_list:    {label: Faculty list,                 group: Academic & Faculty,  keywords: [faculty list, faculty id, designation]}
+  affidavit:       {label: Affidavit,                    group: Academic & Faculty,  keywords: [affidavit, solemnly, deponent, notary]}
+  fee_receipt:     {label: Fee / bank receipt,           group: Finance,             keywords: [fee receipt, processing fee, amount paid, bank of commerce, receipt]}
+  lab_photo:       {label: Lab photo,                    group: Photos & Videos,     keywords: []}
+  building_photo:  {label: Building photo,               group: Photos & Videos,     keywords: []}
+  lab_video_frame: {label: Lab video frame,              group: Photos & Videos,     keywords: []}
+
+# filename hints (substring of the lower-cased, punctuation-free filename)
+filename_hints:
+  land_deed: [lease, deed, landdocument]
+  building_plan: [buildingplan, approvedplan, plan]
+  occupancy_cert: [occupancy, oc]
+  land_use_cert: [landuse, luc, conversion]
+  fire_noc: [fire]
+  university_noc: [university, affiliation]
+  faculty_list: [faculty]
+  affidavit: [affidavit]
+  fee_receipt: [fee, receipt]
+  lab_video_frame: [videoframe]
+  lab_photo: [labphoto]
+  building_photo: [buildingphoto]
+
+# [label, fact key, value type]: the value is the text to the right of the label on the same row
+extraction:
+  land_deed:      [[Institution (lessee), institution_name, text], [Survey number, survey_no, text], [Land area, land_area_acres, area], [Property address, address, text], [Deed date, deed_date, date], [Village, village, text]]
+  building_plan:  [[Institution, institution_name, text], [Survey number, survey_no, text], [Plot area, land_area_acres, area], [Built-up area, built_up_sqm, int], [Site address, address, text], [Village, village, text], [Approval date, approval_date, date]]
+  occupancy_cert: [[Certificate no., certificate_no, text], [Institution, institution_name, text], [Issue date, issue_date, date], [Built-up area, built_up_sqm, int], [Address, address, text]]
+  fire_noc:       [[NOC number, noc_number, text], [Institution, institution_name, text], [Valid from, valid_from, date], [Valid till, valid_till, date], [Premises, address, text]]
+  university_noc: [[NOC number, noc_number, text], [Institution, institution_name, text], [Sanctioned intake, intake, int], [Valid till, valid_till, date]]
+  affidavit:      [[Institution, institution_name, text], [Deponent (signatory), signatory, text], [Date of affidavit, affidavit_date, date]]
+  faculty_list:   [[Institution, institution_name, text]]
+  fee_receipt:    [[Receipt no., receipt_no, text], [Paid by, institution_name, text], [Amount paid, amount, int], [Date, receipt_date, date]]
+  land_use_cert:  [[Certificate no., certificate_no, text], [Institution, institution_name, text], [Survey number, survey_no, text], [Land area, land_area_acres, area], [Issue date, issue_date, date], [Issuer, issuer, text], [Village, village, text]]
+
+# impossible-timeline rules (two only)
+timeline:
+  fire_noc_not_before_plan_approval: true   # Fire NOC issue date must not precede the building-plan approval date
+  no_sunday_issue_dates: true               # no issue / signing date may fall on a Sunday
+  issue_date_keys: [deed_date, issue_date, valid_from, receipt_date, affidavit_date, approval_date]
+
+source:
+  no_online_channel_issuers: [Demo Tehsil Office]   # simulated: these issuers have no portal -> "Source unavailable"
+
+categories:
+  New institution:
+    required: [land_deed, building_plan, occupancy_cert, land_use_cert, fire_noc, university_noc, affidavit, faculty_list, fee_receipt, lab_photo, building_photo]
+  Extension of Approval:
+    required: [land_deed, building_plan, occupancy_cert, fire_noc, university_noc, affidavit, faculty_list, fee_receipt, lab_photo, building_photo]
+  Increase in intake:
+    required: [building_plan, occupancy_cert, fire_noc, university_noc, affidavit, faculty_list, fee_receipt, lab_photo, building_photo]
+  Change of site:
+    required: [land_deed, building_plan, occupancy_cert, land_use_cert, fire_noc, university_noc, affidavit, faculty_list, fee_receipt, lab_photo, building_photo]
+
+# Which channel verifies which document type (simulated sources only)
+source_routing:
+  fire_noc:       [qr, issuer_portal]
+  occupancy_cert: [qr, issuer_portal]
+  university_noc: [qr, digilocker]
+  land_use_cert:  [issuer_portal]
+  affidavit:      [signature]
