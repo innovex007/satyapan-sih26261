@@ -1,14 +1,3 @@
----
-title: Satyapan – SIH26261
-emoji: 🔍
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
-pinned: false
-short_description: Prototype (synthetic data) – Team Innovex_007
----
-
 # Satyapan: AI pre-scrutiny assistant for AICTE officers (SIH26261)
 
 Satyapan reads every document in an approval application, cross-checks the documents against each other, last year's file and (simulated) issuer records, finds photos reused by *other* institutions, and pins every finding to the exact region of the page, with a confidence score and a "How to clear" hint. **It never approves or rejects: the officer decides** (Accept flag · Dismiss with reason · Request clarification, all written to a hash-chained audit log).
@@ -89,4 +78,4 @@ Missing documents · expired NOCs · land area and survey number across document
 
 ## Roadmap (not built, not tested)
 
-Hindi OCR (needs Tesseract with the `hin` model; the Hindi pages render but are not transcribed) · rule editor · verdict and deficiency-letter PDFs · Docker · CLIP embeddings.
+Hindi OCR (needs Tesseract with the `hin` model; the Hindi pages render but are not transcribed) · rule editor · verdict and deficiency-letter PDFs · CLIP embeddings.

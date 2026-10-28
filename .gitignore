@@ -30,6 +30,3 @@ Thumbs.db
 *.pfx
 *.p12
 
-# Local deployment kit archive and extracted copy
-Satyapan_deploy_kit.zip
-Satyapan_deploy_kit/
