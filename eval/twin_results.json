@@ -1,0 +1,173 @@
+{
+ "threshold_min_inliers": 120,
+ "detection": {
+  "hero re-shot": [
+   {
+    "app": "EoA-DEMO-0417",
+    "phash": 22,
+    "inliers": 212,
+    "kind": "reshot",
+    "detected": true
+   }
+  ],
+  "real-photo copy": [
+   {
+    "app": "EoA-2026-0102",
+    "phash": 4,
+    "inliers": 1306,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0103",
+    "phash": 6,
+    "inliers": 1183,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0104",
+    "phash": 6,
+    "inliers": 1232,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0106",
+    "phash": 2,
+    "inliers": 1042,
+    "kind": "copy",
+    "detected": true
+   }
+  ],
+  "drawn-room copy": [
+   {
+    "app": "EoA-2026-0105",
+    "phash": 4,
+    "inliers": 0,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0108",
+    "phash": 4,
+    "inliers": 0,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0112",
+    "phash": 0,
+    "inliers": 0,
+    "kind": "copy",
+    "detected": true
+   },
+   {
+    "app": "EoA-2026-0123",
+    "phash": 4,
+    "inliers": 0,
+    "kind": "copy",
+    "detected": true
+   }
+  ]
+ },
+ "detected": 9,
+ "planted_twins": 9,
+ "hard_negatives": [
+  {
+   "pair": "chem_lab_2 @ EoA-2026-0101  vs  chem_lab_1 @ EoA-2026-0102",
+   "phash": 32,
+   "inliers": 14,
+   "flagged": false
+  },
+  {
+   "pair": "chem_lab_2 @ EoA-2026-0101  vs  chem_lab_1 @ EoA-2025-8115",
+   "phash": 32,
+   "inliers": 14,
+   "flagged": false
+  },
+  {
+   "pair": "lecture_hall_1 @ EoA-2026-0103  vs  lecture_hall_2 @ EoA-2026-0110",
+   "phash": 28,
+   "inliers": 5,
+   "flagged": false
+  },
+  {
+   "pair": "lecture_hall_2 @ EoA-2026-0110  vs  lecture_hall_1 @ EoA-2025-2208",
+   "phash": 26,
+   "inliers": 7,
+   "flagged": false
+  }
+ ],
+ "unplanted_pairs": 15203,
+ "false_matches": 0,
+ "false_match_detail": [],
+ "max_inliers_on_non_twin": 83,
+ "max_non_twin_pair": [
+  "EoA-DEMO-0440",
+  "Building_Photo.jpg",
+  "EoA-2025-8115",
+  "Building_Photo.jpg"
+ ],
+ "min_inliers_on_orb_verified_twin": 212,
+ "margin_below_threshold": 37,
+ "margin_above_threshold": 92,
+ "top_non_twin_inliers": [
+  [
+   83,
+   "EoA-DEMO-0440",
+   "Building_Photo.jpg",
+   "EoA-2025-8115",
+   "Building_Photo.jpg"
+  ],
+  [
+   72,
+   "EoA-2025-4740",
+   "Lab_Photo.jpg",
+   "EoA-2025-3611",
+   "Lab_Photo.jpg"
+  ],
+  [
+   65,
+   "EoA-DEMO-0440",
+   "Building_Photo.jpg",
+   "EoA-2025-7291",
+   "Building_Photo.jpg"
+  ],
+  [
+   63,
+   "EoA-DEMO-0431",
+   "Building_Photo.jpg",
+   "EoA-2025-8115",
+   "Building_Photo.jpg"
+  ],
+  [
+   59,
+   "EoA-2026-0117",
+   "Building_Photo.jpg",
+   "EoA-2025-8115",
+   "Building_Photo.jpg"
+  ],
+  [
+   57,
+   "EoA-DEMO-0431",
+   "Building_Photo.jpg",
+   "EoA-2025-5312",
+   "Building_Photo.jpg"
+  ],
+  [
+   56,
+   "EoA-2026-0110",
+   "Building_Photo.jpg",
+   "EoA-2025-8115",
+   "Building_Photo.jpg"
+  ],
+  [
+   55,
+   "EoA-DEMO-0440",
+   "Lab_Photo.jpg",
+   "EoA-2026-0114",
+   "Lab_Photo.jpg"
+  ]
+ ]
+}

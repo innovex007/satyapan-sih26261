@@ -1,0 +1,192 @@
+{
+ "planted_found": 51,
+ "planted_total": 51,
+ "per_type": {
+  "Missing document": {
+   "found": 5,
+   "total": 5
+  },
+  "Expired Fire NOC": {
+   "found": 5,
+   "total": 5
+  },
+  "Land-area mismatch": {
+   "found": 5,
+   "total": 5
+  },
+  "Date edited after signing": {
+   "found": 5,
+   "total": 5
+  },
+  "Lab photo reused": {
+   "found": 9,
+   "total": 9
+  },
+  "QR differs from print": {
+   "found": 5,
+   "total": 5
+  },
+  "Unsigned / broken signature": {
+   "found": 5,
+   "total": 5
+  },
+  "Duplicate faculty ID": {
+   "found": 6,
+   "total": 6
+  },
+  "Shared land parcel": {
+   "found": 3,
+   "total": 3
+  },
+  "Impossible timeline": {
+   "found": 3,
+   "total": 3
+  }
+ },
+ "missed": [],
+ "clean_applications": 9,
+ "false_alarms_on_clean": 0,
+ "false_alarm_detail": [],
+ "false_alarms_per_100_clean_docs": 0.0,
+ "unplanned_findings_total": 6,
+ "unplanned_detail": [
+  [
+   "EoA-2026-0107",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-557007 also appears in the faculty list of Nilgiri Demo College of Engineering (EoA-2026-0104) in this cycle."
+  ],
+  [
+   "EoA-2026-0109",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-978157 also appears in the faculty list of Padmavati Demo College of Pharmacy (EoA-2026-0125) in this cycle."
+  ],
+  [
+   "EoA-2026-0117",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-337547 also appears in the faculty list of Himagiri Polytechnic (EoA-2026-0106) in this cycle."
+  ],
+  [
+   "EoA-2026-0125",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-978157 also appears in the faculty list of Samarth Institute of Management Studies (EoA-2026-0109) in this cycle."
+  ],
+  [
+   "EoA-2026-0104",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-557007 also appears in the faculty list of Gokul Demo Institute of Technology (EoA-2026-0107) in this cycle."
+  ],
+  [
+   "EoA-2026-0106",
+   "CHK-FACULTY-01",
+   "Manual review required",
+   "Faculty ID FAC-337547 also appears in the faculty list of Ekalavya Demo Institute of Technology (EoA-2026-0117) in this cycle."
+  ]
+ ],
+ "precision": 0.895,
+ "recall": 1.0,
+ "ocr_scanned_facts": {
+  "tp": 81,
+  "expected": 82,
+  "precision": 0.9878048780487805,
+  "recall": 0.9878048780487805,
+  "f1": 0.9878048780487805
+ },
+ "text_layer_facts": {
+  "tp": 1819,
+  "expected": 1819,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0
+ },
+ "classification": {
+  "correct": 511,
+  "total": 511,
+  "accuracy": 1.0
+ },
+ "avg_seconds_per_application": 8.55,
+ "risk_lanes": {
+  "Green": 9,
+  "Amber": 3,
+  "Red": 18
+ },
+ "decoys": 3,
+ "decoys_flagged": 0,
+ "hero_cases": {
+  "EoA-DEMO-0417 land-area mismatch": true,
+  "EoA-DEMO-0417 twin of #4417": true,
+  "EoA-DEMO-0422 Fire NOC expired": true,
+  "EoA-DEMO-0422 QR mismatch": true,
+  "EoA-DEMO-0431 forensic indicator": true,
+  "EoA-DEMO-0431 source unavailable": true,
+  "EoA-DEMO-0440 clean -> Green, no flags": true
+ },
+ "note": "Measured on synthetic data; simulated sources.",
+ "twins": {
+  "detected": 9,
+  "planted": 9,
+  "by_type": {
+   "hero re-shot": {
+    "detected": 1,
+    "total": 1,
+    "stage": [
+     "reshot"
+    ],
+    "min_inliers": 212
+   },
+   "real-photo copy": {
+    "detected": 4,
+    "total": 4,
+    "stage": [
+     "copy"
+    ],
+    "min_inliers": 1042
+   },
+   "drawn-room copy": {
+    "detected": 4,
+    "total": 4,
+    "stage": [
+     "copy"
+    ],
+    "min_inliers": 0
+   }
+  },
+  "hard_negatives": [
+   {
+    "pair": "chem_lab_2 @ EoA-2026-0101  vs  chem_lab_1 @ EoA-2026-0102",
+    "phash": 32,
+    "inliers": 14,
+    "flagged": false
+   },
+   {
+    "pair": "chem_lab_2 @ EoA-2026-0101  vs  chem_lab_1 @ EoA-2025-8115",
+    "phash": 32,
+    "inliers": 14,
+    "flagged": false
+   },
+   {
+    "pair": "lecture_hall_1 @ EoA-2026-0103  vs  lecture_hall_2 @ EoA-2026-0110",
+    "phash": 28,
+    "inliers": 5,
+    "flagged": false
+   },
+   {
+    "pair": "lecture_hall_2 @ EoA-2026-0110  vs  lecture_hall_1 @ EoA-2025-2208",
+    "phash": 26,
+    "inliers": 7,
+    "flagged": false
+   }
+  ],
+  "unplanted_pairs": 15203,
+  "false_matches": 0,
+  "threshold_min_inliers": 120,
+  "max_inliers_non_twin": 83,
+  "min_inliers_reshot": 212,
+  "margin_below": 37,
+  "margin_above": 92
+ }
+}

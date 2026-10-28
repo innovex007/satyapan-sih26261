@@ -12,10 +12,7 @@ data/generator/.cache/
 storage/
 *.db
 prof.out
-data/answer_key.json
 data/mock_registry.json
-eval/results.json
-eval/twin_results.json
 
 # local screenshots at the large size, editor and OS files
 *-1920.png
